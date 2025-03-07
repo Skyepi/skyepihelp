@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | Skye Pi</title>
+  <style>
+    /* Same CSS styling for consistency */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+    .profile-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .qr-code {
+      max-width: 200px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <!-- Google Analytics Integration -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_TRACKING_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA_TRACKING_ID');
+  </script>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h2>Your Profile</h2>
+      <button id="newProfileBtn">Create New QR Code</button>
+    </div>
+    <div id="profileInfo">
+      <!-- Profile details will be loaded here -->
+      <p>Profile information will appear here.</p>
+    </div>
+  </div>
+  <script>
+    // Extract userId from query parameters (if needed for further API calls)
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('userId');
+
+    async function createNewProfile() {
+      // Prompt for email (or retrieve from session data)
+      const email = prompt('Enter your email to create a new profile:');
+      if(email) {
+        const response = await fetch('/api/createProfile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await response.json();
+        if(data.success) {
+          const profile = data.profile;
+          document.getElementById('profileInfo').innerHTML = `
+            <p>Identification Number: <strong>${profile.identificationNumber}</strong></p>
+            <img src="${profile.qrCodeData}" alt="QR Code" class="qr-code">
+          `;
+          // Send event to Google Analytics to track profile creation
+          gtag('event', 'create_profile', { 'event_category': 'Profile', 'event_label': profile.identificationNumber });
+        } else {
+          alert('Error creating profile: ' + data.message);
+        }
+      }
+    }
+
+    document.getElementById('newProfileBtn').addEventListener('click', createNewProfile);
+  </script>
+</body>
+</html>

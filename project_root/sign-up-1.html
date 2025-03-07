@@ -1,75 +1,123 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | Skye Pi</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .signup-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .error {
-            color: red;
-            font-size: 12px;
-        }
-    </style>
-</head>
-<body>
-    <div class="signup-container">
-        <h2>Sign Up</h2>
-        <form id="signupForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="email" id="email" placeholder="Email Address" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-            <p id="errorMessage" class="error"></p>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+    <!-- Google Tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LXH1DLB7LR"></script>
     <script>
-        document.getElementById("signupForm").addEventListener("submit", function(event) {
-            let password = document.getElementById("password").value;
-            let confirmPassword = document.getElementById("confirmPassword").value;
-            let errorMessage = document.getElementById("errorMessage");
-            
-            if (password !== confirmPassword) {
-                event.preventDefault();
-                errorMessage.textContent = "Passwords do not match!";
-            } else {
-                errorMessage.textContent = "";
-            }
-        });
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LXH1DLB7LR');
     </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page with QR Code</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icon and Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link def rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link def rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link def rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link def rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="padding1 margin1 background max-width width10 overflow-auto">
+    <div class="container">
+        <p class="font2 width10 psition-relative text-start text-uppercase fw-simi-bold fs-4">
+            <a style="color:gray;" href="index.html">Back</a>
+        </p>
+
+        <!-- Dynamic QR Code Section -->
+        <div id="qr-code-container" class="text-center">
+            <a href="profile.html">
+                <img id="qr-code-img" src="the_qr_code.png" alt="QR Code" class="img-fluid" onclick="window.location='profile.html';" />
+            </a>
+        </div>
+
+        <!-- User Profile Section -->
+        <div id="profile-section" class="text-center">
+            <h3>Welcome to Your Profile</h3>
+            <div class="mt-4">
+                <h4 id="profile-phrase">This is your personal profile. Feel free to update the phrase!</h4>
+                <button class="btn btn-primary mt-3" onclick="changePhrase()">Change Phrase</button>
+            </div>
+        </div>
+
+        <!-- Print Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="printPage()">Print Page</button>
+        </div>
+    </div>
+
+    <script language="javascript">
+        // Function to change the phrase on the profile page
+        function changePhrase() {
+            const newPhrase = prompt("Enter a new phrase for your profile:", document.getElementById('profile-phrase').innerText);
+            if (newPhrase) {
+                document.getElementById('profile-phrase').innerText = newPhrase;
+            }
+        }
+
+        // Function to print the page
+        function printPage() {
+            window.print();
+        }
+
+        // Bookmark function (optional)
+        function addBookmark() {
+            var bookmarkUrl = window.location;
+            var bookmarkTitle = document.title;
+
+            if (document.all) {
+                window.external.AddFavorite(bookmarkUrl, bookmarkTitle);
+            }
+        }
+    </script>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+
+    <script type="module">
+        // Firebase app initialization
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPbRitIvjFraGw7cu3VzoGDkEg-EbkRQY",
+            authDomain: "skye-pi.firebaseapp.com",
+            projectId: "skye-pi",
+            storageBucket: "skye-pi.firebasestorage.app",
+            messagingSenderId: "81096604979",
+            appId: "1:81096604979:web:f0d89dacde2f978d775246",
+            measurementId: "G-1S4973D84M"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 </body>
 </html>
+
+
