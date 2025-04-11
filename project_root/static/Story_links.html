@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow the Story</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="icon" href="images/favicon-32x32.png" type="image/png">
+</head>
+<body class="container text-center my-4">
+    <header class="mb-4">
+        <img src="images/help_logo.png" alt="Logo" class="img-fluid rounded-circle mb-3" width="150">
+        <h1 class="fw-bold">Follow the Story</h1>
+    </header>
+
+    <main>
+        <p>Stay updated with my journey and the progress of my initiatives:</p>
+        <ul class="list-group mb-4">
+            <li class="list-group-item">Blog Post 1 - <a href="https://example.com">Read Here</a></li>
+            <li class="list-group-item">Blog Post 2 - <a href="https://example.com">Read Here</a></li>
+            <li class="list-group-item">Follow me on <a href="https://twitter.com/example" target="_blank">Twitter</a></li>
+        </ul>
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+    </main>
+
+    <footer class="mt-5">
+        <p>&copy; 2024 Mr. Wayz | All Rights Reserved</p>
+    </footer>
+
+    <!-- Firebase Integration -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSy...",
+            authDomain: "skye-pi.firebaseapp.com",
+            projectId: "skye-pi",
+            storageBucket: "skye-pi.firebasestorage.app",
+            messagingSenderId: "81096604979",
+            appId: "1:81096604979:web:f0d89dacde2f978d775246",
+            measurementId: "G-1S4973D84M"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</body>
+</html>
