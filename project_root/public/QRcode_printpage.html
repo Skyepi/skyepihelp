@@ -1,23 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Print Page</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="padding1 margin1 background max-width width10 overflow-auto">
-    <div class="text-center">
-        <h1 class="font2">Scan to Visit Profile</h1>
-        <img id="qrCode" src="the_qr_code.png" alt="QR Code" class="img-fluid shadow rounded">
-        <p id="phrase" class="fw-bold mt-2">Your Identifiable Phrase</p>
-        <button onclick="printPage()" class="btn btn-primary">Print QR Code</button>
-    </div>
-    
-    <script>
-        function printPage() {
-            window.print();
+<main class="text-center">
+    <h1>Scan to Visit Profile</h1>
+    <img id="qrCodeImage" src="images/default-qr.png" alt="QR Code" class="img-fluid shadow rounded" style="width: 200px;">
+    <p id="phrase" class="fw-bold mt-2">Your Identifiable Phrase</p>
+    <button onclick="printPage()" class="btn btn-primary">Print QR Code</button>
+</main>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+    const firebaseConfig = { /* your config */ };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadQRCode() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        if (!id) return;
+
+        const docRef = doc(db, 'profiles', id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            document.getElementById('qrCodeImage').src = data.qrCodeUrl;
+            document.getElementById('phrase').innerText = data.phrase || 'Your Identifiable Phrase';
         }
-    </script>
-</body>
-</html>
+    }
+
+    function printPage() {
+        window.print();
+    }
+
+    loadQRCode();
+</script>
