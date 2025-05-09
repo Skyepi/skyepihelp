@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 // Pages (you would import or create these components)
 import SignUp from './pages/SignUp';
-import CreateProfile from './pages/CreateProfile';
-import UserProfile from './pages/UserProfile';
-import QRCodePage from './pages/QRCodePage';
+import CreateProfile from './pages/CreateProfileForm.js';
+import UserProfile from './pages/User_Profile.html';
+import QRCodePage from './pages/QRCode_printPage.html';
 import FollowLinks from './pages/FollowLinks';
 import SocialMedia from './pages/SocialMedia';
 
