@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Your QR Code</h1>
+        <div id="qrcode"></div>
+    </div>
+    <script>
+        const userId = 'user_id_placeholder'; // Replace with Firebase Auth UID or profile ID
+        const qrCodeUrl = `https://your-github-repo.github.io/profiles/${userId}`;
+        new QRCode(document.getElementById("qrcode"), qrCodeUrl);
+    </script>
+    <!-- Firebase App (core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+
+<!-- Firebase Firestore (Database) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAPbRitIvjFraGw7cu3VzoGDkEg-EbkRQY",
+      authDomain: "skye-pi.firebaseapp.com",
+      projectId: "skye-pi",
+      storageBucket: "skye-pi.firebasestorage.app",
+      messagingSenderId: "81096604979",
+      appId: "1:81096604979:web:f0d89dacde2f978d775246",
+      measurementId: "G-1S4973D84M"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  <manifest>
+    <application>
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ADMOB_APP_ID"/>
+    </application>
+</manifest>
+</body>
+</html>
+
+
+                                   

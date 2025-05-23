@@ -1,0 +1,91 @@
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skye-pi Help</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="icon" href="images/favicon-32x32.png" type="image/png">
+    <script src="js/main.js" defer></script>
+    <manifest>
+        <application>
+            <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+            <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ADMOB_APP_ID"/>
+        </application>
+    </manifest>
+</head>
+<body onload="MobileAds.initialize(implementation('com.google.android.gms:play-services-ads:23.6.0'))" class="container text-center my-4">
+
+    <header class="mb-4">
+        <img src="images/help_logo.png" alt="Logo" class="img-fluid rounded-circle mb-3" width="150">
+        <h1 class="fw-bold">Mr. Wayz</h1>
+        <p>Helping people with trusted solutions </p>
+    </header>                        
+
+    <main>
+        <section class="video-ad">
+            <video autoplay controls class="w-100 rounded mb-3">
+                <source src="videos/1218.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <section class="call-to-action mb-4">
+            <p>
+                I’m a UX/UI Designer and growing entrepreneur working on projects to help people in poverty.
+                Support me with a donation, bookmark this page, and follow my story. Thank you!
+            </p>
+            <div class="d-flex justify-content-center">
+                <a href="https://cash.app/$1wayz12" target="_blank" class="btn btn-danger me-2">Donate</a>
+                <a href="https://amzn.to/4iAZPYv" target="_blank" class="btn btn-secondary me-2">Wish List</a>
+                <a href="Story_links.html" class="btn btn-primary">Follow the Story</a>
+            </div>
+        </section>
+
+        <section class="qr-code">
+            <a href="QR_Code.html">
+                <img src="images/unknown.jpg" alt="QR Code" class="img-fluid shadow rounded">
+            </a>
+        </section>
+    </main>
+
+    <footer class="mt-5">
+        <p>&copy; 2024 Mr. Wayz | All Rights Reserved</p>
+    </footer>
+<!-- Firebase App (core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+
+<!-- Firebase Firestore (Database) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAPbRitIvjFraGw7cu3VzoGDkEg-EbkRQY",
+      authDomain: "skye-pi.firebaseapp.com",
+      projectId: "skye-pi",
+      storageBucket: "skye-pi.firebasestorage.app",
+      messagingSenderId: "81096604979",
+      appId: "1:81096604979:web:f0d89dacde2f978d775246",
+      measurementId: "G-1S4973D84M"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</body>
+</html>
+
